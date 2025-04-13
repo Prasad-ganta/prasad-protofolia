@@ -1,6 +1,5 @@
-// Wait for the DOM to be fully loaded
+
 document.addEventListener("DOMContentLoaded", () => {
-    // Boot sequence text
     const bootText = document.getElementById("bootText")
     const bootMessages = [
       "Initializing system...",
@@ -17,8 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
     let bootIndex = 0
     let charIndex = 0
-  
-    // Function to simulate typing effect for boot sequence
     function typeBootMessage() {
       if (bootIndex < bootMessages.length) {
         if (charIndex < bootMessages[bootIndex].length) {
@@ -32,27 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
           setTimeout(typeBootMessage, 500)
         }
       } else {
-        // Boot sequence complete, show the main content
         setTimeout(() => {
           document.querySelector(".loading-screen").style.opacity = "0"
           setTimeout(() => {
             document.querySelector(".loading-screen").style.display = "none"
             document.querySelector(".container").style.opacity = "1"
-  
-            // Start the typing animation in the terminal
             startTerminalTyping()
-  
-            // Initialize other animations
             initializeAnimations()
           }, 1000)
         }, 1000)
       }
     }
-  
-    // Start the boot sequence
     setTimeout(typeBootMessage, 1000)
-  
-    // Terminal typing effect
     function startTerminalTyping() {
       const typingText = document.getElementById("typingText")
       const messages = [
@@ -85,26 +73,19 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (isDeleting && charIndex === 0) {
           isDeleting = false
           messageIndex++
-  
-          // Cycle back to the first message if we've gone through all of them
           if (messageIndex === messages.length) {
             messageIndex = 0
           }
-  
-          // Pause before typing the next message
+
           typeSpeed = 500
         }
   
         setTimeout(type, typeSpeed)
       }
-  
-      // Start the typing animation
+
       setTimeout(type, 1000)
     }
-  
-    // Initialize other animations and interactions
     function initializeAnimations() {
-      // Animate skill bars when they come into view
       const skillLevels = document.querySelectorAll(".skill-level")
       const observer = new IntersectionObserver(
         (entries) => {
@@ -121,8 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
       skillLevels.forEach((skill) => {
         observer.observe(skill)
       })
-  
-      // Smooth scrolling for navigation links
       const navLinks = document.querySelectorAll(".nav-link")
       navLinks.forEach((link) => {
         link.addEventListener("click", function (e) {
@@ -137,28 +116,20 @@ document.addEventListener("DOMContentLoaded", () => {
           })
         })
       })
-  
-      // Form submission handling
       const contactForm = document.getElementById("contactForm")
       if (contactForm) {
         contactForm.addEventListener("submit", (e) => {
           e.preventDefault()
-  
-          // Get form values
           const name = document.getElementById("name").value
           const email = document.getElementById("email").value
           const message = document.getElementById("message").value
-  
-          // Here you would typically send the form data to a server
-          // For now, we'll just show a success message
+
           alert(`Thank you, ${name}! Your message has been received. I'll get back to you soon.`)
   
-          // Reset the form
           contactForm.reset()
         })
       }
-  
-      // Add active class to nav links on scroll
+
       window.addEventListener("scroll", () => {
         const sections = document.querySelectorAll("section")
         const scrollPosition = window.scrollY + 100
@@ -176,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
       })
   
-      // Add parallax effect to the hero section
       window.addEventListener("scroll", () => {
         const heroSection = document.querySelector(".hero")
         const scrollValue = window.scrollY
@@ -186,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })
   
-      // Add hover effects to project cards
       const projectCards = document.querySelectorAll(".project-card")
       projectCards.forEach((card) => {
         card.addEventListener("mouseenter", function () {
@@ -201,17 +170,14 @@ document.addEventListener("DOMContentLoaded", () => {
           this.style.borderColor = ""
         })
       })
-  
-      // Profile image fallback and effects
+
       const profileImg = document.getElementById("profileImg")
   
-      // Handle image loading error
       profileImg.onerror = function () {
         this.src = "https://via.placeholder.com/250x250?text=Prasad+Ganta"
         console.log("Profile image could not be loaded. Using placeholder.")
       }
   
-      // Add hover effect to profile image
       const profileFrame = document.querySelector(".profile-frame")
       profileFrame.addEventListener("mouseenter", function () {
         profileImg.style.transform = "scale(1.05)"
@@ -225,7 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
   
-  // Add a class to show active nav link
   function setActiveNavLink() {
     const sections = document.querySelectorAll("section")
     const navLinks = document.querySelectorAll(".nav-link")
@@ -249,7 +214,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
   
-  // Add CSS class for active nav link
   document.addEventListener("DOMContentLoaded", () => {
     // Add this CSS rule programmatically
     const style = document.createElement("style")
